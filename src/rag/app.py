@@ -74,7 +74,13 @@ rag_chain = RunnableWithMessageHistory(
 def qa():
     session_id = "cli"
     while True:
-        q = input("🧑 > ").strip()
+        try:
+            q = input("🧑 > ").strip()
+
+        except KeyboardInterrupt:
+            print("\n👋 Bye")
+            break
+
         if not q:
             break
 
