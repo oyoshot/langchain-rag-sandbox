@@ -23,3 +23,4 @@ dev = [
 
 [project.scripts]
 data = "langchain_rag_tutorial.data:ingest_data"
+app = "langchain_rag_tutorial.app:qa"
