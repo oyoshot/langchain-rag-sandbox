@@ -628,45 +628,6 @@ wheels = [
 ]
 
 [[package]]
-name = "lang-chain-rag-tutorial"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "faiss-cpu" },
-    { name = "langchain" },
-    { name = "langchain-community" },
-    { name = "langchain-openai" },
-    { name = "langchain-unstructured" },
-    { name = "openai" },
-    { name = "unstructured" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "pyright" },
-    { name = "pytest" },
-    { name = "ruff" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "faiss-cpu", specifier = ">=1.11.0" },
-    { name = "langchain", specifier = ">=0.3.25" },
-    { name = "langchain-community", specifier = ">=0.3.25" },
-    { name = "langchain-openai", specifier = ">=0.1.0" },
-    { name = "langchain-unstructured", specifier = ">=0.1.0" },
-    { name = "openai", specifier = ">=1.86.0" },
-    { name = "unstructured", specifier = ">=0.17.2" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "pyright", specifier = ">=1.1.402" },
-    { name = "pytest", specifier = ">=8.4.0" },
-    { name = "ruff", specifier = ">=0.11.13" },
-]
-
-[[package]]
 name = "langchain"
 version = "0.3.25"
 source = { registry = "https://pypi.org/simple" }
@@ -737,6 +698,45 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/74/f1/575120e829430f9bdcfc2c5c4121f04b1b5a143d96e572ff32399b787ef2/langchain_openai-0.3.23.tar.gz", hash = "sha256:73411c06e04bc145db7146a6fcf33dd0f1a85130499dcae988829a4441ddaa66", size = 647923, upload-time = "2025-06-13T14:24:31.388Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/71/65/88060305d5d627841bc8da7e9fb31fb603e5b103b4e5ec5b4d1a7edfbc3b/langchain_openai-0.3.23-py3-none-any.whl", hash = "sha256:624794394482c0923823f0aac44979968d77fdcfa810e42d4b0abd8096199a40", size = 65392, upload-time = "2025-06-13T14:24:30.263Z" },
+]
+
+[[package]]
+name = "langchain-rag-tutorial"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "faiss-cpu" },
+    { name = "langchain" },
+    { name = "langchain-community" },
+    { name = "langchain-openai" },
+    { name = "langchain-unstructured" },
+    { name = "openai" },
+    { name = "unstructured" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "pyright" },
+    { name = "pytest" },
+    { name = "ruff" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "faiss-cpu", specifier = ">=1.11.0" },
+    { name = "langchain", specifier = ">=0.3.25" },
+    { name = "langchain-community", specifier = ">=0.3.25" },
+    { name = "langchain-openai", specifier = ">=0.1.0" },
+    { name = "langchain-unstructured", specifier = ">=0.1.0" },
+    { name = "openai", specifier = ">=1.86.0" },
+    { name = "unstructured", specifier = ">=0.17.2" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "pyright", specifier = ">=1.1.402" },
+    { name = "pytest", specifier = ">=8.4.0" },
+    { name = "ruff", specifier = ">=0.11.13" },
 ]
 
 [[package]]
