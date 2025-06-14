@@ -28,6 +28,8 @@
 信念・モットー:
 「静かな熱意」を信条としており、表には出さないが内に秘めた情熱を持って物事に取り組んでいる。「創造することは、心を豊かにすること」をモットーに、自らの創作活動を通して周囲にも良い影響を与えることを心掛けている。
 
+おおよしは、GHP (Gyoza Hanme Protocol) の設計者
+
 クロマティック・おおよし（Chromatic Ōyoshi）
 クロマティック・おおよしとは、伝承上の怪物であり、鮮やかな色彩を持つ巨大な獣として知られている。古代から現代に至るまで語り継がれる存在であり、その出没地域や特徴、習性などは極めて詳細に記録されている。だが、各時代や文化によって描写が若干異なるため、その実態には多くの謎が残されている。
 
@@ -151,3 +153,164 @@
 「ぬんがらべちょ」は、音声的に愉快で、意味的に多義的であり、架空の歴史的背景や使用方法を想像することができる、非常に魅力的な造語である。単なる造語を超え、自由なイメージ展開を誘うことが可能な言葉であるため、実際のコミュニケーションに導入されれば、人々の日常会話や感情表現を豊かにする可能性を秘めている。
 
 以上、「ぬんがらべちょ」について、架空の要素を交えつつ詳細に考察したものである。この言葉が、おおよしの中で今後もさらに多様なイメージや物語を生み出すことを期待したい。
+
+# GHP: The Gyoza Hanme Protocol
+
+Network Working Group                                        おおよし
+Request for Comments: 8815                               June 2025
+Category: Experimental
+ISSN: 2070-1721
+
+Author's Address: おおよしTokyo, Japan Email: ghp@example.com
+
+## Status of This Memo
+
+This memo defines an experimental protocol for structured, semi-edible data exchange, known as the Gyoza Hanme Protocol (GHP). It is not intended for production use but may serve as a flavorful inspiration for future protocol development.
+
+## Abstract
+
+The Gyoza Hanme Protocol (GHP) is a Layer 4.5 network protocol designed to transmit structured data packets in the form of metaphorical "gyoza" (dumplings). The protocol introduces a unique architecture based on folding patterns, fillings, and cooking profiles to enable secure, compact, and interoperable communication between hosts. It is designed for environments where flavor, formality, and security must be delicately balanced.
+
+## Table of Contents
+
+1. Introduction
+2. Terminology
+3. Protocol Overview
+4. Packet Structure
+5. Protocol Operation
+6. Security Considerations
+7. Error Codes
+8. IANA Considerations
+9. References
+10. Acknowledgments
+
+## 1. Introduction
+
+Gyoza Hanme Protocol (GHP) is a metaphor-driven network protocol that encodes data as gyoza-style payloads. Each payload consists of a folded wrapper (header), a filling (data), a cooking profile (encryption or compression), and a dipping signature (authentication). This structure allows GHP to offer both reliable and unreliable data transmission in a session-oriented or stateless manner.
+
+## 2. Terminology
+
+Gyoza Unit (GU): A complete GHP packet.
+
+Filling Matrix: The body of the packet, containing application-level data.
+
+Cooking Profile: Optional metadata indicating transformations (e.g., compression, encryption).
+
+Dipping Signature: Authentication metadata.
+
+Boil Request / Steam ACK: Syn/ACK-like handshake procedure.
+
+## 3. Protocol Overview
+
+GHP operates on TCP or UDP port 8815. It is designed to function as a hybrid protocol between L4 and L7 (hereafter "Layer 4.5"). GHP introduces multiple cooking modes and encapsulation techniques for various use cases, such as real-time notification (Raw Mode) or secure file transfer (Fried Mode).
+
+## 4. Packet Structure
+
+Each Gyoza Unit (GU) consists of the following fields:
+
+0 1 2 3
+0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
++-------------------------------+-------------------------------+
+| Version | Wrap | Reserved | Payload Length |
++-------------------------------+-------------------------------+
+| Message ID (64 bits) |
++---------------------------------------------------------------+
+| Filling Matrix (variable) |
++---------------------------------------------------------------+
+| Cooking Profile (optional, variable) |
++---------------------------------------------------------------+
+| Dipping Signature (optional, variable) |
++---------------------------------------------------------------+
+---------------+
+
+### 4.1 Header Fields
+
+Version (4 bits): Currently 0x1.
+
+Wrap-Type (4 bits):
+
+0x0: Raw
+
+0x1: Crimped
+
+0x2: Folded
+
+0xF: Open-Faced (EOF)
+
+Payload Length (16 bits): Byte size of Filling Matrix.
+
+Message ID (64 bits): Unique identifier.
+
+### 4.2 Cooking Profile
+
+Describes how the filling was processed:
+
+Mode (8 bits):
+
+0x00: None
+
+0x01: Steamed (LZ4 compression)
+
+0x02: Fried (AES-GCM encryption)
+
+Temp (16 bits): Cooking temperature (°C).
+
+Duration (16 bits): Cooking time (seconds).
+
+### 4.3 Dipping Signature
+
+HMAC or digital signature:
+
+Algorithm: Soy-SHA256, Chili-HMAC, etc.
+
+Signature: Variable-length blob.
+
+## 5. Protocol Operation
+
+### 5.1 Session Initiation
+
+Client → Server: Boil Request
+Server → Client: Steam ACK
+Session is established after the Steam ACK.
+
+### 5.2 Data Exchange
+
+GU packets are exchanged.
+
+Stream-oriented or one-shot delivery supported.
+
+Open-Faced wrap marks the final packet.
+
+### 5.3 Session Termination
+
+After final GU is sent, an optional Final Dip trailer may be included.
+
+## 6. Security Considerations
+
+GHP supports end-to-end encryption via the "Fried" cooking mode (AES-GCM) and integrity verification via Dipping Signatures (e.g., HMAC-SHA256). Users must ensure that shared secret sauces (keys) are distributed securely, e.g., via the Sauce Exchange Protocol (SEP).
+
+## 7. Error Codes
+
+Code Description Recovery Strategy
+0x01 Wrapping Failed Re-wrap with valid parameters
+0x02 Undercooked Filling Adjust cooking profile
+0x03 Sauce Verification Fail Re-sign and retransmit
+0xFF Burnt Packet Discard and resend
+
+## 8. IANA Considerations
+
+This protocol requests the assignment of the following ports:
+
+GHP Default Port: TCP/UDP 8815
+
+GHP over TLS: TCP 8816
+
+No additional registries are required at this time.
+
+## 9. References
+
+None yet. GHP is a standalone effort.
+
+## 10. Acknowledgments
+
+The author wishes to thank the inventors of gyoza, the metaphors of protocol cuisine, and the anonymous diners who inspired this protocol.
