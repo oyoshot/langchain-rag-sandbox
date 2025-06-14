@@ -1,3 +1,5 @@
+from collections import defaultdict
+
 from langchain.chains.combine_documents.stuff import create_stuff_documents_chain
 from langchain.chains.history_aware_retriever import create_history_aware_retriever
 from langchain.chains.retrieval import create_retrieval_chain
@@ -25,11 +27,15 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            "Answer using the following documents when relevant:\n{context}\n\nWhen you quote, append [doc#] where # is the index in the provided context.",
+            "Answer using the following documents when relevant:\n{context}\n\n"
+            "If you have already enumerated items earlier in the chat, keep your count consistent "
+            "unless new documents introduce additional items.",
         ),
+        MessagesPlaceholder(variable_name="chat_history"),
         ("human", "{input}"),
     ],
 )
+stuff_chain = create_stuff_documents_chain(llm=llm, prompt=prompt)
 
 rephrase_prompt = ChatPromptTemplate.from_messages(
     [
@@ -41,26 +47,27 @@ rephrase_prompt = ChatPromptTemplate.from_messages(
         ("human", "{input}"),
     ],
 )
-
 history_aware_retriever = create_history_aware_retriever(
     llm,
     retriever,
     rephrase_prompt,
 )
 
-stuff_chain = create_stuff_documents_chain(llm=llm, prompt=prompt)
-
 rag_logic = create_retrieval_chain(
     history_aware_retriever,
     stuff_chain,
 )
 
+_histories: dict[str, InMemoryChatMessageHistory] = defaultdict(
+    InMemoryChatMessageHistory,
+)
+
 rag_chain = RunnableWithMessageHistory(
     rag_logic,
-    lambda _: InMemoryChatMessageHistory(),  # session_id -> 空の履歴を返す関数
-    input_messages_key="input",  # 人間の発話が入るキー
-    history_messages_key="chat_history",  # 履歴を渡すキー
-    output_messages_key="answer",  # AI の返答が入るキー
+    lambda session_id: _histories[session_id],
+    input_messages_key="input",
+    history_messages_key="chat_history",
+    output_messages_key="answer",
 )
 
 
