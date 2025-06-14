@@ -3,10 +3,15 @@ name = "lang-chain-rag-tutorial"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "langchain>=0.3.25",
-    "openai>=1.86.0",
+  "faiss-cpu>=1.11.0",
+  "langchain>=0.3.25",
+  "langchain-community>=0.3.25",
+  "langchain-openai>=0.1.0",
+  "langchain-unstructured>=0.1.0",
+  "openai>=1.86.0",
+  "unstructured>=0.17.2",
 ]
 
 [dependency-groups]
