@@ -1,5 +1,5 @@
 [project]
-name = "langchain-rag-tutorial"
+name = "rag"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -22,5 +22,5 @@ dev = [
 ]
 
 [project.scripts]
-data = "langchain_rag_tutorial.data:ingest_data"
-app = "langchain_rag_tutorial.app:qa"
+data = "rag.data:ingest_data"
+app = "rag.app:qa"

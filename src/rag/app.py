@@ -7,7 +7,7 @@ from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
-from langchain_rag_tutorial.util import VECTOR_DIR
+from rag.util import VECTOR_DIR
 
 EMBED_MODEL = OpenAIEmbeddings(model="text-embedding-3-small")
 

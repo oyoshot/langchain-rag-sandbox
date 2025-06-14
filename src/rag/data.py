@@ -3,7 +3,7 @@ from langchain_community.vectorstores import FAISS
 from langchain_openai import OpenAIEmbeddings
 from langchain_unstructured import UnstructuredLoader
 
-from langchain_rag_tutorial.util import STATE_OF_THE_UNION_TXT, VECTOR_DIR
+from rag.util import STATE_OF_THE_UNION_TXT, VECTOR_DIR
 
 
 def ingest_data() -> None:
