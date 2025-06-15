@@ -19,7 +19,7 @@ vectordb = FAISS.load_local(
     allow_dangerous_deserialization=True,
 )
 
-retriever = vectordb.as_retriever(search_kwargs={"k": 4})
+retriever = vectordb.as_retriever(search_kwargs={"k": 10})
 
 llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 
